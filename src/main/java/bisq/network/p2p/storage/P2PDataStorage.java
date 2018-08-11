@@ -81,7 +81,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -110,14 +110,14 @@ public class P2PDataStorage implements MessageListener, ConnectionListener, Pers
 
     @Getter
     private final Map<ByteArray, ProtectedStorageEntry> map = new ConcurrentHashMap<>();
-    private final Set<HashMapChangedListener> hashMapChangedListeners = new CopyOnWriteArraySet<>();
+    private final List<HashMapChangedListener> hashMapChangedListeners = new CopyOnWriteArrayList<>();
     private Timer removeExpiredEntriesTimer;
 
     private final Storage<SequenceNumberMap> sequenceNumberMapStorage;
     private final SequenceNumberMap sequenceNumberMap = new SequenceNumberMap();
 
-    private final Set<AppendOnlyDataStoreListener> appendOnlyDataStoreListeners = new CopyOnWriteArraySet<>();
-    private final Set<ProtectedDataStoreListener> protectedDataStoreListeners = new CopyOnWriteArraySet<>();
+    private final List<AppendOnlyDataStoreListener> appendOnlyDataStoreListeners = new CopyOnWriteArrayList<>();
+    private final List<ProtectedDataStoreListener> protectedDataStoreListeners = new CopyOnWriteArrayList<>();
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////
